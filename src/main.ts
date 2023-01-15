@@ -1,12 +1,12 @@
-import { Fallback, Key, Store } from "./types";
+import type { Fallback, Key, Store } from "./types";
 
 function Memoizer<T>(fallback?: Fallback<T>) {
   const data: Store<T> = {};
 
-  function get(key: Key) {
+  async function get(key: Key) {
     if (!data[key]) {
       if (!fallback) throw new Error("Key not found.");
-      const value = fallback(key);
+      const value = await fallback(key);
       set(key, value);
     }
 
