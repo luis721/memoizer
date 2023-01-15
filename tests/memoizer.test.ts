@@ -105,3 +105,19 @@ describe("Memoizer with async fallback", () => {
     expect(async () => await get(1)).rejects.toThrowError();
   });
 });
+
+describe("Memoizer with a fallback that uses the current data", () => {
+  it("Calls fallback when the key is not present and returns the same value as the fallback", async () => {
+    // lets say the fallback computes the next value as the
+    // sum of the previous two
+    const fallbackSpy = vi.fn(
+      async (key, data) => data[key - 1] + data[key - 2]
+    );
+
+    const { set, get } = Memoizer(fallbackSpy);
+
+    set(3, 10);
+    set(4, 12);
+    expect(await get(5)).toBe(22);
+  });
+});

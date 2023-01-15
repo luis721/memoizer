@@ -6,7 +6,7 @@ function Memoizer<T>(fallback?: Fallback<T>) {
   async function get(key: Key) {
     if (!data[key]) {
       if (!fallback) throw new Error("Key not found.");
-      const value = await fallback(key);
+      const value = await fallback(key, data);
       set(key, value);
     }
 

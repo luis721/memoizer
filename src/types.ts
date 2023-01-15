@@ -4,4 +4,4 @@ export type Store<T> = {
 
 export type Key = number | string;
 
-export type Fallback<T> = (key: Key) => T | Promise<T>;
+export type Fallback<T> = (key?: Key, data?: Store<T>) => T | Promise<T>;
