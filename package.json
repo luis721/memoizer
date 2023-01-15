@@ -1,8 +1,24 @@
 {
   "name": "memoizer",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luis721/memoizer.git"
+  },
+  "license": "MIT",
+  "main": "./dist/memoizer.umd.cjs",
+  "module": "./dist/memoizer.js",
+  "exports": {
+    ".": {
+      "import": "./dist/memoizer.js",
+      "require": "./dist/memoizer.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
